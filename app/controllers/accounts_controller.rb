@@ -15,8 +15,9 @@ class AccountsController < ApplicationController
         date_of_birth: params[:date_of_birth],
         phone_number: params[:phone_number]
       }
-      } 
+      }
     }
+    options[:body][:user][:role_id] = params[:role_id] if params[:role_id].present?
     response = HTTParty.post(customer_app_url, options)
     return unless response.message == 'OK'
 
